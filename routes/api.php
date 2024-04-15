@@ -14,8 +14,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/suite/user', function (Request $request) {
-    return $request->user();
+
+Route::prefix('suite')->group(function () {
+    /*middleware:custom-auth-api*/
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::get('user', function (Request $request) {
+            return $request->user();
+        });
+    });
+    /*middleware:custom-auth-api END*/
+
+});
+
+Route::middleware('auth:api')->get('/suite/products', function (Request $request) {
+    return \App\Product::all();
+//    return \App\User::all();
+});
+Route::middleware('auth:api')->get('/suite/products', function (Request $request) {
+    return \App\Product::all();
 //    return \App\User::all();
 });
 
