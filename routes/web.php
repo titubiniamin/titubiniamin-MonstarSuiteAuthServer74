@@ -11,10 +11,14 @@
 |
 */
 
+use App\Http\Controllers\SignupController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::post('/signup',[SignupController::class,'signup'])->name('signup');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
