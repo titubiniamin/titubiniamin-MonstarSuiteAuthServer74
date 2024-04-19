@@ -28,6 +28,9 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 Route::get('/developers',function (){
     return view('developers');
 })->middleware('web');
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login.post');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/oauth/authorize', [CustomAuthorizationController::class, 'authorize']);
 

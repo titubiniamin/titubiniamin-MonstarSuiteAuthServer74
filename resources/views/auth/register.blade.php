@@ -63,15 +63,27 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button id="btn" onClick="showLoader()" type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
                             </div>
                         </div>
+
                     </form>
+                    <div id="loader" class="d-none text-center"> <!-- Loader div initially hidden -->
+                        <img style="width: 50%;height: 50%" src="{{asset('images/loader.gif')}}" alt="Loader">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
+<script>
+    function showLoader(){
+        document.getElementById('loader').classList.remove('d-none');
+        // document.getElementById('btn').setAttribute('disabled', 'disabled'); // Disable button
+
+    }
+
+</script>

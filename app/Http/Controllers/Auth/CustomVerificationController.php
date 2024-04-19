@@ -21,7 +21,7 @@ class CustomVerificationController extends VerificationController
 
         // Append query parameters
         $queryParams = http_build_query([
-            'client_id' => $request->client_id ?? 3,
+            'client_id' => $request->client_id ?? 2,
             'redirect_uri' => $request->redirect_uri ?? 'http://10.3.2.51:8002/oauth/callback',
             'response_type' => $request->code ?? 'code',
         ]);

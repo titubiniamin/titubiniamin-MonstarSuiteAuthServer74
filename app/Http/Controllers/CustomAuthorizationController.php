@@ -1,10 +1,13 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\Http\Controllers\AuthorizationController as PassportAuthorizationController;
 use Illuminate\Http\Request;
-use Psr\Http\Message\ServerRequestInterface; // Import the ServerRequestInterface
+use Psr\Http\Message\ServerRequestInterface;
+
+// Import the ServerRequestInterface
 use Laravel\Passport\ClientRepository;
 use Laravel\Passport\TokenRepository;
 
@@ -15,12 +18,14 @@ class CustomAuthorizationController extends PassportAuthorizationController
     {
 //        return $clients;
 //        return $client_id = $request->query('response_type');
-//        return $client_id = $request->query('redirect_uri');
+        $client_id = $request->query('client_id') ?? null;
+        $redirect_uri = $request->query('redirect_uri') ?? null;
+        $response_type = $request->query('response_type') ?? null;
 
         // Ensure there is an authenticated user
         if (!$request->user()) {
             // Handle unauthenticated user, for example, redirect them to the login page
-            return redirect()->route('login');
+            return redirect()->route('login', ['client_id' => $client_id, 'redirect_uri' => $redirect_uri, 'response_type' => $response_type]);
         }
 
         // Check if the user's email is verified

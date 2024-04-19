@@ -40,19 +40,17 @@ class LoginController extends Controller
     }
     public function showLoginForm(Request $request)
     {
+//     return   $client_id = $request->session()->get('client_id');
         // Pass the client_id and redirect_uri to the login view
-        return view('auth.login', [
-            'client_id' => $request->client_id,
-            'redirect_uri' => $request->redirect_uri,
-        ]);
+        $client_id = $request->input('client_id')??null;
+        $redirect_uri = $request->input('redirect_uri')??null;
+        $response_type = $request->input('response_type')??null;
+
+        return view('auth.login', compact('client_id','redirect_uri','response_type'));
     }
     protected function authenticated(Request $request, $user)
     {
-//        return     $oauthClientId = $request->input('client_id');
-        ;
-//        return 'hi';
-        // Customize redirection logic after login
-//        return $request->client_id;
+
         $queries = http_build_query([
             'client_id' => $request->client_id ?? 3,
             'redirect_uri' => $request->redirect_uri ?? 'http://10.3.2.51:8002/oauth/callback',
