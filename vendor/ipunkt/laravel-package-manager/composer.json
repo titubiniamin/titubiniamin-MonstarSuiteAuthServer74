@@ -1,0 +1,27 @@
+{
+	"name": "ipunkt/laravel-package-manager",
+	"description": "Package Manager for laravel packages",
+	"keywords": [
+		"laravel",
+		"package"
+	],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Robert Kummer",
+			"email": "r.kummer@ipunkt.biz"
+		}
+	],
+	"require": {
+		"php": ">=7.0.0",
+		"illuminate/support": "*",
+		"illuminate/routing": "*"
+	},
+	"autoload": {
+		"psr-4": {
+			"Ipunkt\\Laravel\\PackageManager\\": "src/"
+		}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
+}

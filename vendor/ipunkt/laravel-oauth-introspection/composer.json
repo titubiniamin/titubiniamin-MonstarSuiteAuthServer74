@@ -1,0 +1,45 @@
+{
+	"name": "ipunkt/laravel-oauth-introspection",
+	"description": "OAuth 2.0 Token Introspection implementation for extending Laravel Passport (RFC 7662)",
+	"version": "2.0.1",
+	"keywords": [
+		"laravel",
+		"passport",
+		"oauth",
+		"introspection",
+		"rfc-7662"
+	],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Robert Kummer",
+			"email": "r.kummer@ipunkt.biz"
+		}
+	],
+	"require": {
+		"php": ">=7.0",
+		"guzzlehttp/guzzle": ">=7.0",
+		"ipunkt/laravel-package-manager": "^2.0",
+		"laminas/laminas-diactoros": "^2.4",
+		"laravel/passport": ">=8.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Ipunkt\\Laravel\\OAuthIntrospection\\": "src/"
+		}
+	},
+	"config": {
+		"preferred-install": "dist",
+		"sort-packages": true,
+		"optimize-autoloader": true
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Ipunkt\\Laravel\\OAuthIntrospection\\Providers\\OAuthIntrospectionServiceProvider"
+			]
+		}
+	}
+}

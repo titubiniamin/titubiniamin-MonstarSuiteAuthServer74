@@ -58,7 +58,6 @@ class AuthorizationController
                               ClientRepository $clients,
                               TokenRepository $tokens)
     {
-
         $authRequest = $this->withErrorHandling(function () use ($psrRequest) {
             return $this->server->validateAuthorizationRequest($psrRequest);
         });
@@ -111,7 +110,7 @@ class AuthorizationController
      */
     protected function approveRequest($authRequest, $user)
     {
-        $authRequest->setUser(new User($user->getKey()));
+        $authRequest->setUser(new User($user->getAuthIdentifier()));
 
         $authRequest->setAuthorizationApproved(true);
 
