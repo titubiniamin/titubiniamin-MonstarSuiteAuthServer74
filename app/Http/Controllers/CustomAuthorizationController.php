@@ -45,6 +45,7 @@ class CustomAuthorizationController extends PassportAuthorizationController
             'user_email' => $userEmail,
         ]);
 //        return $request;
+//        return $request;
         // Call parent authorize method to proceed with regular authorization flow
         return parent::authorize($psrRequest, $request, $clients, $tokens);
     }
