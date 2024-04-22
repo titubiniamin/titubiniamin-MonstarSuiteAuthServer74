@@ -2,12 +2,14 @@
 
 namespace App;
 
+use App\Company;
+use App\Product;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, Notifiable;
 
@@ -17,7 +19,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
+        'company_id',
+        'is_active',
+        'security_code',
+        'model_name',
+        'custom_token',
     ];
 
     /**
@@ -37,4 +46,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+
+    public function companies()
+    {
+        return $this->belongsToMany(Company::class,'company_product_user','user_id','company_id')->withPivot([]);
+    }
+
+//    public function products()
+//    {
+//        return $this->belongsToMany(Product::class);
+//    }
+    public function products()
+    {
+        return $this->belongsToMany(Product::class,'company_product_user','user_id','product_id')->withPivot([]);
+    }
+
 }

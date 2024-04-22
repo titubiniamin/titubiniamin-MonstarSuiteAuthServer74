@@ -10,6 +10,15 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
+                        @if(isset($client_id))
+                            <input type="hidden" name="client_id" value="{{ $client_id }}">
+                        @endif
+                        @if(isset($redirect_uri))
+                            <input type="hidden" name="redirect_uri" value="{{ $redirect_uri }}">
+                        @endif
+                        @if(isset($response_type))
+                            <input type="hidden" name="response_type" value="{{ $response_type }}">
+                        @endif
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
