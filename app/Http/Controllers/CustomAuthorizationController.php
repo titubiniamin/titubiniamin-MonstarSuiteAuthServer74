@@ -49,4 +49,65 @@ class CustomAuthorizationController extends PassportAuthorizationController
         // Call parent authorize method to proceed with regular authorization flow
         return parent::authorize($psrRequest, $request, $clients, $tokens);
     }
+    public function metadata(Request $request)
+    {
+
+        $metadata = [
+            'issuer' => url('/'),
+            'authorization_endpoint' => url('/') . '/oauth/authorize',
+            'token_endpoint' => url('/') . '/oauth/token',
+            'token_introspection_endpoint' => url('/') . '/oauth/introspect',
+            'userinfo_endpoint' => url('/') . '/api/suite/user-access-info',
+            'end_session_endpoint' => '',
+            'jwks_uri' => url('/') . '/oauth2/jwks',
+            'check_session_iframe' => '',
+            'grant_types_supported' => [
+                'authorization_code',
+                'implicit',
+                'refresh_token',
+                'password',
+                'client_credentials'
+            ],
+            'response_types_supported' => [
+                'code',
+                'none',
+                'id_token',
+                'token',
+                'id_token token',
+                'code id_token',
+                'code token',
+                'code id_token token'
+            ],
+            'subject_types_supported' => [
+                'public',
+                'pairwise'
+            ],
+            'id_token_signing_alg_values_supported' => [
+                'PS384',
+                'ES384',
+                'RS384',
+            ],
+            // Add other metadata fields as needed
+        ];
+
+        return response()->json($metadata);
+    }
+    public function jwks()
+    {
+        $publicKey = file_get_contents(storage_path('oauth-public.key'));
+        $jwks = [
+            'keys' => [
+                [
+                    'kty' => 'RSA',
+                    'alg' => 'RS256',
+                    'use' => 'sig',
+                    'kid' => 'passport-jwks',
+                    'n' => base64_encode(hex2bin(substr(bin2hex($publicKey), 26, 256))),
+                    'e' => 'AQAB',
+                ],
+            ],
+        ];
+
+        return response()->json($jwks);
+    }
 }

@@ -36,4 +36,6 @@ Route::get('/oauth/authorize', [CustomAuthorizationController::class, 'authorize
 
 Route::get('/email/verify/{id}/{hash}', 'Auth\CustomVerificationController@verify')->name('verification.verify');
 Route::get('/email/resend', 'Auth\CustomVerificationController@resend')->name('verification.resend');
+Route::get('oauth2/jwks', 'CustomAuthorizationController@jwks');
+Route::get('.well-known/oauth-authorization-server', 'CustomAuthorizationController@metadata');
 
