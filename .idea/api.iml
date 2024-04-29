@@ -110,6 +110,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/theseer/tokenizer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/tijsverkoyen/css-to-inline-styles" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/vlucas/phpdotenv" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/ipunkt/laravel-oauth-introspection" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/ipunkt/laravel-package-manager" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/http-client" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

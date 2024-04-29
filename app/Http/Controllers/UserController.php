@@ -132,7 +132,7 @@ class UserController extends Controller
           $userData['company'][]=$companyData;
         }
         return response()->json(['success' => true, 'data' => $userData, 'msg' => []]);
-
+//hello
     }
 
 }
